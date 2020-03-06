@@ -1,37 +1,49 @@
 package com.huqingjie.hgshop.pojo;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 
  * @ClassName: Category 
  * @Description: TODO
- * @author: huqingjie
- * @date: 2020Äê3ÔÂ3ÈÕ ÉÏÎç9:40:36
+ * @author: lenovo
+ * @date: 2020å¹´3æœˆ6æ—¥ ä¸Šåˆ10:58:00
  */
-public class Category implements Serializable{
-
-	/**
-	 * @fieldName: serialVersionUID
-	 * @fieldType: long
-	 * @Description: TODO
-	 */
-	private static final long serialVersionUID = 6363285095856531180L;
+public class Category  implements Serializable{
 	
-	private Integer id;	//id
-	private String name;  //·ÖÀàÃû³Æ
-	private Integer parentId;  //¸¸·ÖÀàid
-	private String path; //¸¸·ÖÀàÃû³Æ
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 132779590146042324L;
+	
+	private Integer id; // 
+	
+	private Integer parentId; // æ¶“å©ç«´ç»¾ÑƒåŸ†é’å—™è¢«é¨åˆ¬d  parent_id
+	
+	@JsonProperty("text")
+	private String name;//é’å—™è¢«é¨å‹«æ‚•ç»‰ï¿½
+	private String path;// æµ åº¢ç‰´é’å—™è¢«é’æ¿ç¶‹é“å¶…åç»«è¤æ®‘ç’ºîˆšç·
+	@JsonProperty("nodes")
+	private List<Category> children;// æµ åº¢ç‰´é’å—™è¢«é’æ¿ç¶‹é“å¶…åç»«è¤æ®‘ç’ºîˆšç·
+	
+	
+	
+	public List<Category> getChildren() {
+		return children;
+	}
+	public void setChildren(List<Category> children) {
+		this.children = children;
+	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public Integer getParentId() {
 		return parentId;
@@ -39,11 +51,23 @@ public class Category implements Serializable{
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getPath() {
 		return path;
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", parentId=" + parentId + ", name=" + name + ", path=" + path + ", children="
+				+ children + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -76,5 +100,7 @@ public class Category implements Serializable{
 	}
 	
 	
+
 	
+
 }

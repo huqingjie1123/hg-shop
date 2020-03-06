@@ -18,8 +18,16 @@ public class SpecController {
 	
 	@Reference
 	SpecService specService;
-	
-	
+	/**
+	 * 列表展示
+	 * @Title: list 
+	 * @Description: TODO
+	 * @param request
+	 * @param page
+	 * @param name
+	 * @return
+	 * @return: String
+	 */
 	@RequestMapping("list")
 	public String list(HttpServletRequest request,
 			@RequestParam(defaultValue="1") int page,
@@ -30,9 +38,17 @@ public class SpecController {
 		 
 		return "spec/list";
 	}
-	
-	@RequestMapping("add")
+	/**
+	 * 添加
+	 * @Title: add 
+	 * @Description: TODO
+	 * @param request
+	 * @param spec
+	 * @return
+	 * @return: String
+	 */
 	@ResponseBody
+	@RequestMapping("add")
 	public String add(HttpServletRequest request,Spec spec) {
 		
 		spec.getOptions().removeIf(x->{return x.getOptionName()==null;});
@@ -40,6 +56,70 @@ public class SpecController {
 		int add = specService.add(spec);
 		
 		return add>0?"success":"false";
+	}
+	
+	@ResponseBody
+	@RequestMapping("update")
+	public String update(HttpServletRequest request,Spec spec) {
+
+		spec.getOptions().removeIf(x->{return x.getOptionName()==null;});
+		
+		int result = specService.update(spec);  
+		
+		return result >0 ?"success":"false";
+	}
+	
+	/**
+	 * 回显
+	 * @Title: getSpec 
+	 * @Description: TODO
+	 * @param request
+	 * @param id
+	 * @return
+	 * @return: Spec
+	 */
+	@ResponseBody
+	@RequestMapping("getSpec")
+	public Spec getSpec(HttpServletRequest request, int id){
+		
+		return specService.findById(id);
+		
+	}
+	/**
+	 * 删除规格
+	 * @Title: delSpec 
+	 * @Description: TODO
+	 * @param request
+	 * @param id
+	 * @return
+	 * @return: String
+	 */
+	@ResponseBody
+	@RequestMapping("delSpec")
+	public String delSpec(HttpServletRequest request,int id) {
+		
+		int delNum = specService.delete(id);
+		
+		return delNum>0?"success":"false";
+	}
+	
+	/**
+	 * 删除规格
+	 * @Title: delSpecBatch 
+	 * @Description: TODO
+	 * @param request
+	 * @param ids
+	 * @return
+	 * @return: String
+	 */
+	@ResponseBody
+	@RequestMapping("delSpecBatch")
+	public String delSpecBatch(HttpServletRequest request,@RequestParam(name="ids[]") int[] ids) {
+
+		
+		int delNum = specService.deleteBatch(ids);
+		
+		return delNum>0?"success":"false";
 	}
 
 }
