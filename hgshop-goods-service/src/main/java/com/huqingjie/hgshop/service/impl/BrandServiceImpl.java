@@ -57,4 +57,16 @@ public class BrandServiceImpl implements BrandService {
 		return 1;
 	}
 
+	@Override
+	public PageInfo<Brand> listBrand(String firstChar, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Brand> getAllBrands() {
+		// TODO Auto-generated method stub
+		return brandDao.listAll();
+	}
+
 }

@@ -5,6 +5,9 @@ import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.huqingjie.hgshop.pojo.Brand;
 import com.huqingjie.hgshop.pojo.Category;
+import com.huqingjie.hgshop.pojo.Sku;
+import com.huqingjie.hgshop.pojo.Spu;
+import com.huqingjie.hgshop.pojo.SpuVo;
 
 /**
  * dubbo 的服务接口函数必须要有 非void返回
@@ -38,6 +41,13 @@ public interface GoodsService {
 	 int deleteCategory(Integer id);
 	 
 	 PageInfo<Category> listCategory(String firstChar,int page);
-	 
+	 /**
+	  * 树
+	  * @Title: treeCategory 
+	  * @Description: TODO
+	  * @return
+	  * @return: List<Category>
+	  */
 	 List<Category> treeCategory();
+	 
 }

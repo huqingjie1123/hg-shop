@@ -17,8 +17,24 @@ path
 	select * from hg_category where parent_id=#{value}
 </select>
 
+<select id="findById" resultType="Category">
+	select id,name,path from hg_category where id=#{value}	
+</select>
+
 <select id="tree" resultMap="catMapper">
 	select * from hg_category where parent_id=0
 </select>
+
+<insert id="add" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+	insert into hg_category(parent_id,name) value(#{parentId},#{name})
+</insert>
+
+<delete id="delete">
+	delete from hg_category where id=#{value}
+</delete>
+
+<update id="update">
+	update hg_category set name = #{name} where id=#{id}
+</update>
 
 </mapper>
